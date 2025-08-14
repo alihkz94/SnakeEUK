@@ -1,6 +1,5 @@
 # SnakeEUK <img src="snakeeuk.png" alt="SnakeEUK" height="60" align="right">
 
-[![GitHub release](https://img.shields.io/github/v/release/alihkz94/SnakeEUK)](https://github.com/alihkz94/SnakeEUK/releases)
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.0-brightgreen.svg)](https://snakemake.readthedocs.io)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
