@@ -1,4 +1,4 @@
-# Eukaryome Taxonomy Pipeline
+# EUKARYOME Taxonomy Pipeline
 
 A comprehensive and reproducible pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tools including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.
 
