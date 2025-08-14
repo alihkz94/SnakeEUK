@@ -4,7 +4,7 @@ A comprehensive and reproducible pipeline for processing taxonomic FASTA files a
 
 ## Overview
 
-This pipeline is designed to process and clean FASTA files containing taxonomic information. It performs robust encoding conversion (from latin‑1 to ASCII) on the fly, filters and cleans taxonomy headers, and generates outputs tailored for various bioinformatics tools. The workflow is orchestrated via [Snakemake](https://snakemake.readthedocs.io/) to ensure reproducibility and parallel processing. Each tool-specific script is modular and can be adjusted to meet specific requirements.
+This pipeline is designed to process and clean FASTA files containing taxonomic information. It performs robust encoding conversion (from latin‑1 to ASCII) on the fly, filters and cleans taxonomy headers, and generates outputs tailored for various bioinformatics tools. The workflow is using [Snakemake](https://snakemake.readthedocs.io/) workflow to ensure reproducibility and parallel processing. Each tool-specific script is modular and can be adjusted to meet specific requirements.
 
 ## Repository Structure
 
