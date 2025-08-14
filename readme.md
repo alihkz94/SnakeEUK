@@ -1,17 +1,12 @@
-# SnakeEUK <img src="snakeeuk.png" alt="SnakeEUK" height="40" align="right">
+# SnakeEUK <img src="snakeeuk.png" alt="SnakeEUK" height="60" align="right">
 
 [![GitHub release](https://img.shields.io/github/v/release/alihkz94/SnakeEUK)](https://github.com/alihkz94/SnakeEUK/releases)
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.0-brightgreen.svg)](https://snakemake.readthedocs.io)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[![Runs with Conda](https://img.shields.io/badge/runs%20with-conda-brightgreen.svg)](https://conda.io/)
-[![Runs with Docker](https://img.shields.io/badge/runs%20with-docker-blue.svg)](https://www.docker.com/)
-
 **Database formatting pipeline for eukaryotic taxonomy FASTA files**
 
 A pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tools including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.EUK
-
-![SnakeEUK logo](snakeeuk.png)
 
 Database formatting pipeline for taxonomy FASTA files.
 
