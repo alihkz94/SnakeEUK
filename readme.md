@@ -1,4 +1,8 @@
-# Databse formatting Pipeline
+# SnakeEUK
+
+![SnakeEUK logo](snakeeuk.png)
+
+Database formatting pipeline for taxonomy FASTA files.
 
 A pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tools including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.
 
