@@ -15,7 +15,7 @@ A pipeline for processing taxonomic FASTA files and converting them into formats
 
 This pipeline is designed to process and clean FASTA files containing taxonomic information. It performs robust encoding conversion (from latin‑1 to ASCII) on the fly, filters and cleans taxonomy headers, and generates outputs tailored for various bioinformatics tools. The workflow is using [Snakemake](https://snakemake.readthedocs.io/) workflow to ensure reproducibility and parallel processing. Each tool-specific script is modular and can be adjusted to meet specific requirements.
 
-## Repository Structure
+## Repository structure
 
 ```plaintext
 .
@@ -31,7 +31,7 @@ This pipeline is designed to process and clean FASTA files containing taxonomic 
 └── README.md                 # This README file
 ```
 
-## Installation & Dependencies
+## Installation & dependencies
 
 ### Requirements
 
@@ -57,9 +57,9 @@ Ensure that `seqkit` is installed and available in your system PATH.
 
 ## Usage
 
-## Input File Format and Requirements
+## Input file format and requirements
 
-### Expected Input Structure
+### Expected input structure
 
 This pipeline is designed to process taxonomic FASTA files with a specific header format. Each sequence header must contain:
 
@@ -73,7 +73,7 @@ This pipeline is designed to process taxonomic FASTA files with a specific heade
 >KF849527;Fungi;Glomeromycota;Glomeromycetes;Diversisporales;Acaulosporaceae;Acaulospora;.;Põlme
 ```
 
-### Taxonomic Hierarchy Structure
+### Taxonomic hierarchy structure
 
 The pipeline expects **up to 7 main taxonomic levels** in the following order:
 1. **Kingdom** (e.g., Straminipila, Fungi)
@@ -95,7 +95,7 @@ The pipeline intelligently handles these placeholders by:
 - Converting placeholders to "unclassified" labels where appropriate
 - Truncating taxonomy at the first meaningful placeholder (DADA2 format)
 
-### Character Encoding and Cleaning
+### Character encoding and cleaning
 
 The pipeline includes robust encoding conversion capabilities:
 
@@ -104,7 +104,7 @@ The pipeline includes robust encoding conversion capabilities:
 - **Quote removal**: Strips quotation marks from headers
 - **Special character handling**: Replaces non-ASCII characters with ASCII equivalents
 
-### File Naming Convention
+### File naming convention
 
 Input files should be named according to the target region or dataset:
 - `ITS.fasta` - Internal Transcribed Spacer sequences
@@ -112,11 +112,11 @@ Input files should be named according to the target region or dataset:
 - `SSU.fasta` - Small Subunit rRNA sequences
 - `longread.fasta` - Long-read sequencing datasets
 
-### Input Files
+### Input files
 
 Place your input FASTA files (e.g., `ITS.fasta`, `LSU.fasta`, `SSU.fasta`, `longread.fasta`) in the repository root (or designated input folder).
 
-### How to Prepare Your Database
+### How to prepare your database
 
 If you have a custom taxonomic database, format it as follows:
 
@@ -134,9 +134,9 @@ ATCGATCGATCG...
 GCTAGCTAGCTA...
 ```
 
-### Understanding Your Database and Construction Guidelines
+### Understanding your database and construction guidelines
 
-#### Assessing Your Current Database
+#### Assessing your current database
 
 Before using this pipeline, examine your existing database to understand its structure:
 
@@ -155,7 +155,7 @@ Before using this pipeline, examine your existing database to understand its str
    file your_database.fasta  # Should show ASCII or UTF-8
    ```
 
-#### Database Construction Best Practices
+#### Database construction best practices
 
 **For Maximum Compatibility:**
 
@@ -165,7 +165,7 @@ Before using this pipeline, examine your existing database to understand its str
 4. **Avoid Special Characters**: Stick to alphanumeric characters and common punctuation
 5. **Quality Control**: Ensure sequences are properly formatted and contain valid nucleotide codes
 
-**Example Database Construction:**
+**Example database construction:**
 
 ```fasta
 # Well-formatted entries
@@ -185,7 +185,7 @@ TACGTACGTACGTACG...
 # >BadExample3 Fungi Ascomycota   # No separators
 ```
 
-#### Taxonomic Considerations
+#### Taxonomic considerations
 
 **Taxonomic Rank Expectations:**
 - The pipeline is optimized for **standard Linnaean hierarchy**
@@ -206,10 +206,10 @@ TACGTACGTACGTACG...
 #### Quality Assurance Steps
 
 1. **Validate Headers**: Ensure all headers follow the expected format
-2. **Check Taxonomy Completeness**: Verify taxonomic assignments are reasonable
-3. **Test Pipeline**: Run on a small subset first to verify output format
-4. **Sequence Quality**: Ensure sequences contain only valid nucleotide codes (A, T, G, C, N)
-5. **Duplicate Detection**: Check for and remove duplicate sequences if needed
+2. **Check taxonomy completeness**: Verify taxonomic assignments are reasonable
+3. **Test pipeline**: Run on a small subset first to verify output format
+4. **Sequence quality**: Ensure sequences contain only valid nucleotide codes (A, T, G, C, N)
+5. **Duplicate detection**: Check for and remove duplicate sequences if needed
 
 By following these guidelines, you can construct a high-quality database that will work seamlessly with this pipeline and produce reliable outputs for downstream analysis tools.
 
@@ -221,7 +221,7 @@ Edit `config.yaml` to set the desired version string, for example:
 version: "1.9.4"
 ```
 
-### Running the Pipeline
+### Running the pipeline
 
 Run the entire pipeline with:
 
@@ -237,7 +237,7 @@ snakemake dada2/DADA2_EUK_ITS_v1.9.4.fasta dada2/DADA2_EUK_LSU_v1.9.4.fasta dada
 
 > **Tip:** If you suspect output files are outdated or incorrect, you can force re-run of jobs using `--forceall` or `--forcerun <target>`.
 
-### Output Files
+### Output files
 
 - **General:** `general/General_EUK_{base}_v{version}.fasta`
 - **DADA2:** `dada2/DADA2_EUK_{base}_v{version}.fasta`  
@@ -247,13 +247,13 @@ snakemake dada2/DADA2_EUK_ITS_v1.9.4.fasta dada2/DADA2_EUK_LSU_v1.9.4.fasta dada
   *Note:* Taxonomy in the TSV files is cleaned to remove trailing dot placeholders.
 - **SINTAX:** `sintax/SINTAX_EUK_{base}_v{version}.fasta`
 
-## Pipeline Processing Details
+## Pipeline processing details
 
-### Input Transformation by Tool
+### Input transformation by tool
 
 The pipeline processes the same input file differently for each downstream tool, optimizing the format for specific requirements:
 
-#### 1. General Format (`general/`)
+#### 1. General format (`general/`)
 - **Purpose**: Standardized format with complete taxonomic prefixes
 - **Processing**: 
   - Adds rank prefixes: `k__`, `p__`, `c__`, `o__`, `f__`, `g__`, `s__`
@@ -265,7 +265,7 @@ The pipeline processes the same input file differently for each downstream tool,
   Output: >EUK1157284;k__Straminipila;p__Chrysophyta;c__Chrysophyceae;o__Chromulinales;f__Chromulinaceae;g__Spumella;s__unclassified
   ```
 
-#### 2. DADA2 Format (`dada2/`)
+#### 2. DADA2 format (`dada2/`)
 - **Purpose**: Simplified taxonomy without accession numbers
 - **Processing**:
   - **Removes accession ID** (first field)
@@ -277,7 +277,7 @@ The pipeline processes the same input file differently for each downstream tool,
   Output: >Straminipila;Chrysophyta;Chrysophyceae;Chromulinales;Chromulinaceae;Spumella;
   ```
 
-#### 3. Mothur Format (`mothur/`)
+#### 3. Mothur format (`mothur/`)
 - **Purpose**: Separate FASTA and taxonomy files
 - **Processing**:
   - **FASTA file**: Contains only accession IDs as headers
@@ -289,7 +289,7 @@ The pipeline processes the same input file differently for each downstream tool,
   TAX:   EUK1157284	Straminipila;Chrysophyta;Chrysophyceae;Chromulinales;Chromulinaceae;Spumella
   ```
 
-#### 4. QIIME2 Format (`qiime2/`)
+#### 4. QIIME2 format (`qiime2/`)
 - **Purpose**: QIIME2-compatible FASTA and TSV files
 - **Processing**:
   - **FASTA file**: Contains only accession IDs as headers
@@ -302,7 +302,7 @@ The pipeline processes the same input file differently for each downstream tool,
          EUK1157284	Straminipila;Chrysophyta;Chrysophyceae;Chromulinales;Chromulinaceae;Spumella
   ```
 
-#### 5. SINTAX Format (`sintax/`)
+#### 5. SINTAX format (`sintax/`)
 - **Purpose**: SINTAX/USEARCH compatible format with rank prefixes
 - **Processing**:
   - Uses General format as input (requires rank prefixes)
@@ -315,19 +315,19 @@ The pipeline processes the same input file differently for each downstream tool,
   Output: >EUK1157284;tax=d:Straminipila,p:Chrysophyta,c:Chrysophyceae,o:Chromulinales,f:Chromulinaceae,g:Spumella;
   ```
 
-### Data Quality Improvements
+### Data Quality improvements
 
 The pipeline automatically handles several data quality issues:
 
-1. **Encoding Problems**: Converts non-ASCII characters to ASCII equivalents
-2. **Quote Removal**: Strips quotation marks that may interfere with parsing
-3. **Whitespace Normalization**: Trims excess whitespace from taxonomic fields
-4. **Sequence Formatting**: 
+1. **Encoding problems**: Converts non-ASCII characters to ASCII equivalents
+2. **Quote removal**: Strips quotation marks that may interfere with parsing
+3. **Whitespace normalization**: Trims excess whitespace from taxonomic fields
+4. **Sequence formatting**: 
    - Converts sequences to uppercase (via seqkit)
    - Removes line wrapping for consistent formatting
-5. **Placeholder Standardization**: Handles various placeholder formats (`.`, empty, "unused")
+5. **Placeholder standardization**: Handles various placeholder formats (`.`, empty, "unused")
 
-### Taxonomic Completeness
+### Taxonomic completeness
 
 The pipeline intelligently handles incomplete taxonomic assignments:
 - **Missing higher ranks**: Fills with "unclassified" labels in General format
@@ -336,25 +336,25 @@ The pipeline intelligently handles incomplete taxonomic assignments:
 
 This ensures compatibility with downstream analysis tools that expect consistent taxonomic formatting.
 
-## Pipeline Details
+## Pipeline details
 
 - **Robust Encoding Conversion:**  
   All scripts utilize a custom file-like wrapper (implemented in `utils.py`) that reads files using `latin-1` decoding and converts them on the fly to ASCII. This ensures that all non-ASCII characters are handled gracefully.
 
-- **Taxonomy Header Cleaning:**  
+- **Taxonomy header cleaning:**  
   The scripts are designed to remove unwanted placeholders (`.`) and extra taxonomic levels.  
   - For DADA2, the script removes the accession number and retains taxonomy fields only until the first placeholder.
   - For QIIME2 and Mothur, the scripts clean the TSV taxonomy output by stripping trailing dot placeholders.
 
-- **Reproducible Workflow:**  
+- **Reproducible workflow:**  
   The entire process is managed by Snakemake, ensuring that jobs run in the correct order with proper dependencies, even when running in parallel.
 
-## Customization & Troubleshooting
+## Customization & troubleshooting
 
-- **Modifying Header Formatting:**  
+- **Modifying header formatting:**  
   The header processing logic is contained within each script (e.g., `dada2.py`, `qiime.py`). You can modify the functions `transform_header` or `clean_taxonomy` as needed.
 
-- **Resource Management:**  
+- **Resource management:**  
   If you encounter memory or process issues (e.g., SIGKILLs), try reducing the number of cores with `--cores 2` or increasing system resources.
 
 - **Debugging:**  
