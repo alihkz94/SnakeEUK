@@ -5,11 +5,9 @@
 
 **Database formatting pipeline for eukaryotic taxonomy FASTA files**
 
-A pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tools including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.EUK
+A pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tools, including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.
 
-Database formatting pipeline for taxonomy FASTA files.
-
-A pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tools including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.
+A pipeline for processing taxonomic FASTA files and converting them into formats suitable for multiple downstream tool,s including General taxonomy, DADA2, Mothur, QIIME2, and SINTAX.
 
 ## Overview
 
